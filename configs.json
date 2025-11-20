@@ -1,0 +1,7 @@
+{
+  "EFFICIENTNET-B3": {
+        "file_id": "1B2TX1aG-983wAvGL2IC5Mpwg-WIx9nJd",
+        "filename": "best_effnetb3_deepfake.pth",
+        "is_zip": false
+    }
+}
