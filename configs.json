@@ -1,4 +1,9 @@
 {
+  "YOLOv8N-Face": {
+    "file_id": "1No9bf7fPAKQxpU3eNJMV83dfFxeoDAhQ",
+    "filename": "yolov8n-face.pt",
+    "is_zip": false
+  },
   "EFFICIENTNET-B3": {
         "file_id": "1B2TX1aG-983wAvGL2IC5Mpwg-WIx9nJd",
         "filename": "best_effnetb3_deepfake.pth",

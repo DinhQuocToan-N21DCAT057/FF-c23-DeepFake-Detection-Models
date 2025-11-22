@@ -1,9 +1,9 @@
-import gdown
 import logging
 import os
 import warnings
 import zipfile
 
+import gdown
 from scripts.configs import Paths, ROOT_DIR
 
 logging.basicConfig(
@@ -14,6 +14,7 @@ warnings.filterwarnings("ignore")
 class ModelDownloader:
     def __init__(self):
         self.cfg = Paths()
+
 
     def _download_from_drive(self, file_id, dest_path):
         url = f"https://drive.google.com/uc?id={file_id}"

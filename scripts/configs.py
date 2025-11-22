@@ -1,8 +1,8 @@
-import os
-from pathlib import Path
 import json
 import logging
+import os
 import warnings
+from pathlib import Path
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -34,15 +34,16 @@ class Paths:
 
     # Các key tương ứng với loại model
     MODEL_KEYS = [
+        "YOLOv8N-Face",
         "EFFICIENTNET-B3",
     ]
 
     # Nạp JSON map khi khởi tạo
     def __init__(self):
         self.path_map = load_path_map()
-        self.paths = self._build_paths_from_map()
+        self.paths = self._get_model_paths()
 
-    def _build_paths_from_map(self):
+    def _get_model_paths(self):
         """Tạo dict ánh xạ model_key → thông tin đầy đủ (path, filename, file_id, is_zip)."""
         paths = {}
 
@@ -71,32 +72,3 @@ class Paths:
                 logging.warning(f"⚠️  No entry found for {key} in {MAP_FILE}")
 
         return paths
-
-
-class FirebaseConfigs:
-
-    def __init__(self):
-        self.path_map = load_path_map()
-        self.info = self._get_firebase_info()
-
-    def _get_firebase_info(self):
-        temp = self.path_map.get("FIREBASE")
-        if temp:
-            firebase_cred_env = os.getenv("")
-            if firebase_cred_env:
-                credential_file = firebase_cred_env
-            else:
-                credential_file = temp.get("credential_file", "")
-            cred_path = os.path.join(SECRETS_DIR, credential_file)
-            info = {
-                "cred_path": cred_path,
-                "project_id": temp.get("project_id"),
-                "collections": temp.get("collections")
-            }
-        else:
-            info = {
-                "cred_path": SECRETS_DIR,
-                "project_id": None,
-                "collections": None
-            }
-        return info
