@@ -212,6 +212,9 @@ __marimo__/
 #Models folder
 /models
 
+#secrets
+/secrets
+
 #Video source folder
 /video_src
 
