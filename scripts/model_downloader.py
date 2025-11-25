@@ -4,7 +4,7 @@ import warnings
 import zipfile
 
 import gdown
-from scripts.configs import Paths, ROOT_DIR
+from configs import Paths, ROOT_DIR
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
