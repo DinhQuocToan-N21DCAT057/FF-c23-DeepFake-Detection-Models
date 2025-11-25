@@ -217,9 +217,10 @@ __marimo__/
 
 #Video source folder
 /video_src
+/videos
 
 #Scripts
 /scripts/demo.py
 /scripts/test.py
-
+/scripts/verify_video_builder.py
 

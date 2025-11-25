@@ -6,7 +6,7 @@ import timm
 import torch.nn as nn
 
 from ultralytics import YOLO
-from scripts.model_downloader import ModelDownloader
+from model_downloader import ModelDownloader
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -99,7 +99,8 @@ class EFFNetB3Inference(nn.Module):
 
     def predict(self, face_tensor):
         with torch.no_grad():
-            pred = torch.softmax(self._get_model()(face_tensor), dim=1)[0]
-            proba = pred[1].item()
+            proba = torch.softmax(self._get_model()(face_tensor), dim=1)[0, 1].item()
+            label = "FAKE" if proba > 0.5 else "REAL"
+            conf = proba if label == "FAKE" else 1 - proba
 
-        return pred, proba
+        return label, conf

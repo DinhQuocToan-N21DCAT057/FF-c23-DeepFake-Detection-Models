@@ -22,6 +22,9 @@ MAP_FILE = os.path.join(ROOT_DIR, "configs.json")
 if not os.path.exists(MAP_FILE):
     raise FileNotFoundError(f"❌ config JSON not found: {MAP_FILE}")
 
+VIDEO_DIR = Path(os.path.join(ROOT_DIR, "videos"))
+if not os.path.exists(VIDEO_DIR):
+    VIDEO_DIR.mkdir(parents=True, exist_ok=True)
 
 def load_path_map():
     """Đọc file JSON map: tên model PATH → {file_id, filename, is_zip}."""
