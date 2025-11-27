@@ -1,25 +1,18 @@
 import cv2
 import torch
 import numpy as np
-import albumentations as A
-
-from albumentations.pytorch import ToTensorV2
 from frame_loader import FrameLoader
 from model_inferences import YOLOv8NInference
+from transform_factory import get_transform
 
 
 class FrameProcessing:
-
-    def __init__(self, video_path, device='cuda'):
+    def __init__(self, video_path, model_key, device="cuda"):
         self.face_model = YOLOv8NInference()
-        self.device = torch.device(device if torch.cuda.is_available() else 'cpu')
-        self.transform = A.Compose([
-            A.Resize(256, 256),
-            A.CenterCrop(224, 224),
-            A.Normalize([0.485, 0.456, 0.406],
-                        [0.229, 0.224, 0.225]),
-            ToTensorV2(),
-        ])
+        self.device = torch.device(device if torch.cuda.is_available() else "cpu")
+
+        self.transform = get_transform(model_key)
+        
         self.frames = FrameLoader(video_path)
 
     def process(self):
@@ -38,6 +31,12 @@ class FrameProcessing:
         areas = (boxes[:, 2] - boxes[:, 0]) * (boxes[:, 3] - boxes[:, 1])
         box = boxes[np.argmax(areas)].astype(int)
         x1, y1, x2, y2 = box
+
+        # Thêm margin nhẹ để tránh crop sát mặt
+        h, w = frame.shape[:2]
+        margin = 20
+        x1, y1 = max(0, x1 - margin), max(0, y1 - margin)
+        x2, y2 = min(w, x2 + margin), min(h, y2 + margin)
 
         return frame[y1:y2, x1:x2], box
 
