@@ -1,12 +1,41 @@
 {
-  "YOLOv8N-Face": {
+  "YOLOv8N-FACE": {
     "file_id": "1No9bf7fPAKQxpU3eNJMV83dfFxeoDAhQ",
-    "filename": "yolov8n-face.pt",
+    "filename": "YOLOv8N-face.pt",
     "is_zip": false
   },
   "EFFICIENTNET-B3": {
-        "file_id": "1B2TX1aG-983wAvGL2IC5Mpwg-WIx9nJd",
-        "filename": "best_effnetb3_deepfake.pth",
-        "is_zip": false
-    }
+    "file_id": "1B2TX1aG-983wAvGL2IC5Mpwg-WIx9nJd",
+    "filename": "FF_c23_EffNetb3_deepfake.pth",
+    "is_zip": false,
+    "size": 300,
+    "crop": 300,
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "ViT-BASE-P16-224": {
+    "file_id": "1_unafStHQW3kWjzJEDs9fC7kEXqMdqAf",
+    "filename": "FF_c23_ViT_Base_Patch16_224_deepfake.pth",
+    "is_zip": false,
+    "size": 256,
+    "crop": 224,
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  }
 }

@@ -222,5 +222,9 @@ __marimo__/
 #Scripts
 /scripts/demo.py
 /scripts/test.py
+/scripts/temp.py
 /scripts/verify_video_builder.py
+
+
+/tranning.txt
 
